@@ -8,12 +8,14 @@ Racional::Racional(int numerador, int denominador)
     this->numerador = numerador;
     this->denominador = denominador;
     Simplificar();
+    Simplificar();
 }
 
 Racional::Racional()
 {
     numerador = 5;
     denominador = 10;
+    Simplificar();
     Simplificar();
 }
 

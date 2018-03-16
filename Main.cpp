@@ -324,6 +324,7 @@ void multiplicacion()
 
 void multiplicacionAsignacion()
 {
+    cout << "---MULTIPLICACIÓN ASIGNACIÓN---" << endl;
     int pos;
     pos = racionales.size() + 1;
     while (pos < 0 || pos >= racionales.size())
