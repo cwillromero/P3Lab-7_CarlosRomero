@@ -1,6 +1,9 @@
 #include <string>
 #include "Racional.h"
 #include <iostream>
+#include <vector>
+#include <fstream>
+#include <sstream>
 using namespace std;
 int menu();
 void suma();
@@ -11,7 +14,11 @@ void multiplicacion();
 void multiplicacionAsignacion();
 void division();
 void divisionAsigancion();
-
+void crearRacionales();
+void abrirRacionales();
+void Parsear(string);
+vector<Racional *> racionales;
+vector<string> log;
 int main()
 {
     int opcion;
@@ -66,6 +73,10 @@ int main()
             v = false;
             break;
         }
+        case 10:
+        {
+            crearRacionales();
+        }
         }
     }
     return 0;
@@ -74,7 +85,7 @@ int main()
 int menu()
 {
     int opcion = 0;
-    while (opcion <= 0 || opcion > 9)
+    while (opcion <= 0 || opcion > 10)
     {
         cout << endl
              << "-----Laboratorio#7 Carlos Romero-----" << endl;
@@ -87,59 +98,91 @@ int menu()
         cout << "7) División" << endl;
         cout << "8) División y Asignación" << endl;
         cout << "9) Salir" << endl;
+        cout << "10) Crear Racionales" << endl;
         cout << "Ingrese una Opción: " << endl;
         cin >> opcion;
         cout << endl;
+        if (opcion > 0 && opcion < 9)
+        {
+            if (racionales.size() < 2)
+            {
+                cout << "Debe Crear Al menos 2 Racionales Primero: " << endl;
+                opcion = 100;
+            }
+        }
     }
     return opcion;
 }
 
 void suma()
 {
+    int pos;
     cout << "---SUMA---" << endl;
-    int numerador;
-    int denominador;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 1: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional = new Racional(numerador, denominador);
-    cout << ">>Racional 1: " << *racional;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    Racional *racional = racionales[pos];
+    cout << ">>Racional 1: " << *racional << endl;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 2: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional2 = new Racional(numerador, denominador);
+    Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     const Racional *suma;
     suma = *racional + *racional2;
     cout << "**>>Suma: " << *suma << endl;
+    stringstream salida;
+    salida << *racional << " + " << *racional2 << " = " << *suma;
+    string a = salida.str();
+    cout << a<< endl;
+    //String linea =  + "/" + racional->getDenominador() + " + " + racional2->getNumerador() + "/" + racional2->getDenominador() + " = " + suma->getNumerador() + "/" + suma->getDenominador();
 }
 
 void resta()
 {
+    int pos;
     cout << "---RESTA---" << endl;
-    int numerador;
-    int denominador;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 1: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional = new Racional(numerador, denominador);
-    cout << ">>Racional 1: " << *racional;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    Racional *racional = racionales[pos];
+    cout << ">>Racional 1: " << *racional << endl;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 2: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional2 = new Racional(numerador, denominador);
+    Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     const Racional *resta;
     resta = *racional - *racional2;
@@ -148,74 +191,105 @@ void resta()
 
 void sumaAsignacion()
 {
+    int pos;
     cout << "---SUMA ASIGNACIÓN---" << endl;
-    int numerador;
-    int denominador;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 1: ";
+        cin >> pos;
+    }
+    int r1 = pos;
     cout << endl;
-    Racional *racional = new Racional(numerador, denominador);
-    cout << ">>Racional 1: " << *racional;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    Racional *racional = racionales[pos];
+    cout << ">>Racional 1: " << *racional << endl;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 2: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional2 = new Racional(numerador, denominador);
+    Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     *racional += *racional2;
+    racionales[r1] = racional;
     cout << "**>>Suma Asignación: " << *racional << endl;
 }
 
 void restaAsignacion()
 {
+    int pos;
     cout << "---RESTA ASIGNACIÓN---" << endl;
-    int numerador;
-    int denominador;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 1: ";
+        cin >> pos;
+    }
+    int r1 = pos;
     cout << endl;
-    Racional *racional = new Racional(numerador, denominador);
-    cout << ">>Racional 1: " << *racional;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    Racional *racional = racionales[pos];
+    cout << ">>Racional 1: " << *racional << endl;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 2: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional2 = new Racional(numerador, denominador);
+    Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     *racional -= *racional2;
+    racionales[r1] = racional;
     cout << "**>>Resta Asignación: " << *racional << endl;
 }
 
 void multiplicacion()
 {
+    int pos;
     cout << "---MULTIPLICACIÓN---" << endl;
-    int numerador;
-    int denominador;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 1: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional = new Racional(numerador, denominador);
-    cout << ">>Racional 1: " << *racional;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    Racional *racional = racionales[pos];
+    cout << ">>Racional 1: " << *racional << endl;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 2: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional2 = new Racional(numerador, denominador);
+    Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     const Racional *multiplicacion;
     multiplicacion = *racional * (*racional2);
@@ -224,49 +298,68 @@ void multiplicacion()
 
 void multiplicacionAsignacion()
 {
-    cout << "---MULTIPLICACIÓN ASIGNACIÓN---" << endl;
-    int numerador;
-    int denominador;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    int pos;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 1: ";
+        cin >> pos;
+    }
+    int r1 = pos;
     cout << endl;
-    Racional *racional = new Racional(numerador, denominador);
-    cout << ">>Racional 1: " << *racional;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    Racional *racional = racionales[pos];
+    cout << ">>Racional 1: " << *racional << endl;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 2: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional2 = new Racional(numerador, denominador);
+    Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     *racional *= *racional2;
+    racionales[r1] = racional;
     cout << "**>>Multiplicación Asignación: " << *racional << endl;
 }
 
 void division()
 {
+    int pos;
     cout << "---DIVISIÓN---" << endl;
-    int numerador;
-    int denominador;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 1: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional = new Racional(numerador, denominador);
-    cout << ">>Racional 1: " << *racional;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    Racional *racional = racionales[pos];
+    cout << ">>Racional 1: " << *racional << endl;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 2: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional2 = new Racional(numerador, denominador);
+    Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     const Racional *division;
     division = *racional / (*racional2);
@@ -275,25 +368,107 @@ void division()
 
 void divisionAsigancion()
 {
+    int pos;
     cout << "---DIVISIÓN ASIGNACIÓN---" << endl;
-    int numerador;
-    int denominador;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 1: ";
+        cin >> pos;
+    }
+    int r1 = pos;
     cout << endl;
-    Racional *racional = new Racional(numerador, denominador);
-    cout << ">>Racional 1: " << *racional;
-    cout << "Ingrese Numerador: ";
-    cin >> numerador;
-    cout << endl
-         << "Ingrese Denominador: ";
-    cin >> denominador;
+    Racional *racional = racionales[pos];
+    cout << ">>Racional 1: " << *racional << endl;
+    pos = racionales.size() + 1;
+    while (pos < 0 || pos >= racionales.size())
+    {
+        for (int i = 0; i < racionales.size(); i++)
+        {
+            cout << i << ") " << *racionales[i];
+        }
+        cout << "Elija el Racional 2: ";
+        cin >> pos;
+    }
     cout << endl;
-    Racional *racional2 = new Racional(numerador, denominador);
+    Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     *racional /= *racional2;
+    racionales[r1] = racional;
     cout << "**>>División Asignación: " << *racional << endl;
+}
+
+void crearRacionales()
+{
+    int denominador;
+    int numerador;
+    cout << "Ingrese el Numerador: ";
+    cin >> numerador;
+    cout << endl
+         << "Ingrese el Denominador: ";
+    cin >> denominador;
+    cout << endl;
+    Racional *temp = new Racional(numerador, denominador);
+    racionales.push_back(temp);
+}
+
+void abrirRacionales()
+{
+    ifstream archivo("Racionales.txt");
+    if (archivo.is_open())
+    {
+        while (!archivo.eof())
+        {
+            string linea;
+            getline(archivo, linea);
+            if (linea.size() < 1)
+            {
+                break;
+            }
+            Parsear(linea);
+        }
+        archivo.close();
+    }
+}
+
+void Parsear(string linea)
+{
+    int inicio = 0;
+    vector<string> elementos;
+    for (int i = 0; i < linea.size(); i++)
+    {
+        if (linea.at(i) == '/' || linea.at(i) == ' ')
+        {
+            string elemento = "";
+            for (int j = inicio; j < i; j++)
+            {
+                if (linea.at(j) != '/')
+                {
+                    elemento = elemento + linea.at(j);
+                }
+            }
+            elementos.push_back(elemento);
+            inicio = i;
+        }
+    }
+    int num = atoi(elementos[0].c_str());
+    int den = atoi(elementos[1].c_str());
+    Racional *ra = new Racional(num, den);
+    racionales.push_back(ra);
+}
+
+void Guardar()
+{
+    ofstream ficheroSalida;
+    ficheroSalida.open("Racionales.txt");
+    for (int i = 0; i < racionales.size(); i++)
+    {
+        ficheroSalida << log[i].c_str();
+        ficheroSalida << "\n";
+    }
+    ficheroSalida.close();
 }
