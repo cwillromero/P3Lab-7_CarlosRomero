@@ -28,9 +28,9 @@ public:
   const Racional *operator-(const Racional &) const;
   const Racional *operator*(const Racional &)const;
   const Racional *operator/(const Racional &) const;
-  void operator+=(Racional &);
-  void operator-=(Racional &);
-  void operator*=(Racional &);
-  void operator/=(Racional &);
+  void operator+=(const Racional &);
+  void operator-=(const Racional &);
+  void operator*=(const Racional &);
+  void operator/=(const Racional &);
 };
 #endif

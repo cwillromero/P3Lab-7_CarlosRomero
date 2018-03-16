@@ -97,9 +97,40 @@ const Racional *Racional::operator/(const Racional &Dividendo) const
     return racional;
 }
 
-void Racional::operator+=(Racional &suma)
+void Racional::operator*=(const Racional &multi)
 {
-    
+    int N_numerador = this->numerador * multi.getNumerador();
+    int N_denominador = this->denominador * multi.getDenominador();
+    this->numerador = N_numerador;
+    this->denominador = N_denominador;
+    Simplificar();
+}
+
+void Racional::operator+=(const Racional &suma)
+{
+    int N_numerador = (this->numerador * suma.getDenominador()) + (this->denominador * suma.getNumerador());
+    int N_denominador = this->denominador * suma.getDenominador();
+    this->numerador = N_numerador;
+    this->denominador = N_denominador;
+    Simplificar();
+}
+
+void Racional::operator-=(const Racional &resta)
+{
+    int N_numerador = (this->numerador * resta.getDenominador()) - (this->denominador * resta.getNumerador());
+    int N_denominador = this->denominador * resta.getDenominador();
+    this->numerador = N_numerador;
+    this->denominador = N_denominador;
+    Simplificar();
+}
+
+void Racional::operator/=(const Racional &divi)
+{
+    int N_numerador = this->numerador * divi.getDenominador();
+    int N_denominador = this->denominador * divi.getNumerador();
+    this->numerador = N_numerador;
+    this->denominador = N_denominador;
+    Simplificar();
 }
 
 Racional::~Racional()

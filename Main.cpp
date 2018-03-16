@@ -148,6 +148,7 @@ void resta()
 
 void sumaAsignacion()
 {
+    cout << "---SUMA ASIGNACIÓN---" << endl;
     int numerador;
     int denominador;
     cout << "Ingrese Numerador: ";
@@ -157,11 +158,22 @@ void sumaAsignacion()
     cin >> denominador;
     cout << endl;
     Racional *racional = new Racional(numerador, denominador);
-    cout << *racional;
+    cout << ">>Racional 1: " << *racional;
+    cout << "Ingrese Numerador: ";
+    cin >> numerador;
+    cout << endl
+         << "Ingrese Denominador: ";
+    cin >> denominador;
+    cout << endl;
+    Racional *racional2 = new Racional(numerador, denominador);
+    cout << ">>Racional 2: " << *racional2 << endl;
+    *racional += *racional2;
+    cout << "**>>Suma Asignación: " << *racional << endl;
 }
 
 void restaAsignacion()
 {
+    cout << "---RESTA ASIGNACIÓN---" << endl;
     int numerador;
     int denominador;
     cout << "Ingrese Numerador: ";
@@ -171,7 +183,17 @@ void restaAsignacion()
     cin >> denominador;
     cout << endl;
     Racional *racional = new Racional(numerador, denominador);
-    cout << *racional;
+    cout << ">>Racional 1: " << *racional;
+    cout << "Ingrese Numerador: ";
+    cin >> numerador;
+    cout << endl
+         << "Ingrese Denominador: ";
+    cin >> denominador;
+    cout << endl;
+    Racional *racional2 = new Racional(numerador, denominador);
+    cout << ">>Racional 2: " << *racional2 << endl;
+    *racional -= *racional2;
+    cout << "**>>Resta Asignación: " << *racional << endl;
 }
 
 void multiplicacion()
@@ -202,6 +224,7 @@ void multiplicacion()
 
 void multiplicacionAsignacion()
 {
+    cout << "---MULTIPLICACIÓN ASIGNACIÓN---" << endl;
     int numerador;
     int denominador;
     cout << "Ingrese Numerador: ";
@@ -211,7 +234,17 @@ void multiplicacionAsignacion()
     cin >> denominador;
     cout << endl;
     Racional *racional = new Racional(numerador, denominador);
-    cout << *racional;
+    cout << ">>Racional 1: " << *racional;
+    cout << "Ingrese Numerador: ";
+    cin >> numerador;
+    cout << endl
+         << "Ingrese Denominador: ";
+    cin >> denominador;
+    cout << endl;
+    Racional *racional2 = new Racional(numerador, denominador);
+    cout << ">>Racional 2: " << *racional2 << endl;
+    *racional *= *racional2;
+    cout << "**>>Multiplicación Asignación: " << *racional << endl;
 }
 
 void division()
@@ -242,6 +275,7 @@ void division()
 
 void divisionAsigancion()
 {
+    cout << "---DIVISIÓN ASIGNACIÓN---" << endl;
     int numerador;
     int denominador;
     cout << "Ingrese Numerador: ";
@@ -251,5 +285,15 @@ void divisionAsigancion()
     cin >> denominador;
     cout << endl;
     Racional *racional = new Racional(numerador, denominador);
-    cout << *racional;
+    cout << ">>Racional 1: " << *racional;
+    cout << "Ingrese Numerador: ";
+    cin >> numerador;
+    cout << endl
+         << "Ingrese Denominador: ";
+    cin >> denominador;
+    cout << endl;
+    Racional *racional2 = new Racional(numerador, denominador);
+    cout << ">>Racional 2: " << *racional2 << endl;
+    *racional /= *racional2;
+    cout << "**>>División Asignación: " << *racional << endl;
 }
