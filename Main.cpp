@@ -19,6 +19,8 @@ void abrirRacionales();
 void Parsear(string);
 vector<Racional *> racionales;
 vector<string> log;
+void Guardar();
+
 int main()
 {
     int opcion;
@@ -123,7 +125,7 @@ void suma()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i] << endl;
         }
         cout << "Elija el Racional 1: ";
         cin >> pos;
@@ -136,7 +138,7 @@ void suma()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i] << endl;
         }
         cout << "Elija el Racional 2: ";
         cin >> pos;
@@ -150,8 +152,9 @@ void suma()
     stringstream salida;
     salida << *racional << " + " << *racional2 << " = " << *suma;
     string a = salida.str();
-    cout << a<< endl;
-    //String linea =  + "/" + racional->getDenominador() + " + " + racional2->getNumerador() + "/" + racional2->getDenominador() + " = " + suma->getNumerador() + "/" + suma->getDenominador();
+    cout << a << endl;
+    log.push_back(a);
+    Guardar();
 }
 
 void resta()
@@ -163,7 +166,7 @@ void resta()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 1: ";
         cin >> pos;
@@ -176,7 +179,7 @@ void resta()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 2: ";
         cin >> pos;
@@ -187,6 +190,12 @@ void resta()
     const Racional *resta;
     resta = *racional - *racional2;
     cout << "**>>Resta: " << *resta << endl;
+    stringstream salida;
+    salida << *racional << " - " << *racional2 << " = " << *suma;
+    string a = salida.str();
+    cout << a << endl;
+    log.push_back(a);
+    Guardar();
 }
 
 void sumaAsignacion()
@@ -198,7 +207,7 @@ void sumaAsignacion()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 1: ";
         cin >> pos;
@@ -212,7 +221,7 @@ void sumaAsignacion()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 2: ";
         cin >> pos;
@@ -223,6 +232,12 @@ void sumaAsignacion()
     *racional += *racional2;
     racionales[r1] = racional;
     cout << "**>>Suma Asignación: " << *racional << endl;
+    stringstream salida;
+    salida << *racional << " += " << *racional2 << " = " << *suma;
+    string a = salida.str();
+    cout << a << endl;
+    log.push_back(a);
+    Guardar();
 }
 
 void restaAsignacion()
@@ -234,7 +249,7 @@ void restaAsignacion()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 1: ";
         cin >> pos;
@@ -248,7 +263,7 @@ void restaAsignacion()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 2: ";
         cin >> pos;
@@ -259,6 +274,12 @@ void restaAsignacion()
     *racional -= *racional2;
     racionales[r1] = racional;
     cout << "**>>Resta Asignación: " << *racional << endl;
+    stringstream salida;
+    salida << *racional << " -= " << *racional2 << " = " << *suma;
+    string a = salida.str();
+    cout << a << endl;
+    log.push_back(a);
+    Guardar();
 }
 
 void multiplicacion()
@@ -270,7 +291,7 @@ void multiplicacion()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 1: ";
         cin >> pos;
@@ -283,7 +304,7 @@ void multiplicacion()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 2: ";
         cin >> pos;
@@ -294,6 +315,12 @@ void multiplicacion()
     const Racional *multiplicacion;
     multiplicacion = *racional * (*racional2);
     cout << "**>>Multiplicación: " << *multiplicacion << endl;
+    stringstream salida;
+    salida << *racional << " * " << *racional2 << " = " << *suma;
+    string a = salida.str();
+    cout << a << endl;
+    log.push_back(a);
+    Guardar();
 }
 
 void multiplicacionAsignacion()
@@ -304,7 +331,7 @@ void multiplicacionAsignacion()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 1: ";
         cin >> pos;
@@ -318,7 +345,7 @@ void multiplicacionAsignacion()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 2: ";
         cin >> pos;
@@ -329,6 +356,12 @@ void multiplicacionAsignacion()
     *racional *= *racional2;
     racionales[r1] = racional;
     cout << "**>>Multiplicación Asignación: " << *racional << endl;
+    stringstream salida;
+    salida << *racional << " *= " << *racional2 << " = " << *suma;
+    string a = salida.str();
+    cout << a << endl;
+    log.push_back(a);
+    Guardar();
 }
 
 void division()
@@ -340,7 +373,7 @@ void division()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 1: ";
         cin >> pos;
@@ -353,7 +386,7 @@ void division()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 2: ";
         cin >> pos;
@@ -364,6 +397,12 @@ void division()
     const Racional *division;
     division = *racional / (*racional2);
     cout << "**>>División: " << *division << endl;
+    stringstream salida;
+    salida << *racional << " / " << *racional2 << " = " << *suma;
+    string a = salida.str();
+    cout << a << endl;
+    log.push_back(a);
+    Guardar();
 }
 
 void divisionAsigancion()
@@ -375,7 +414,7 @@ void divisionAsigancion()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 1: ";
         cin >> pos;
@@ -389,7 +428,7 @@ void divisionAsigancion()
     {
         for (int i = 0; i < racionales.size(); i++)
         {
-            cout << i << ") " << *racionales[i];
+            cout << i << ") " << *racionales[i]<<endl;
         }
         cout << "Elija el Racional 2: ";
         cin >> pos;
@@ -400,6 +439,12 @@ void divisionAsigancion()
     *racional /= *racional2;
     racionales[r1] = racional;
     cout << "**>>División Asignación: " << *racional << endl;
+    stringstream salida;
+    salida << *racional << " /= " << *racional2 << " = " << *suma;
+    string a = salida.str();
+    cout << a << endl;
+    log.push_back(a);
+    Guardar();
 }
 
 void crearRacionales()
@@ -464,7 +509,7 @@ void Parsear(string linea)
 void Guardar()
 {
     ofstream ficheroSalida;
-    ficheroSalida.open("Racionales.txt");
+    ficheroSalida.open("Log.txt");
     for (int i = 0; i < racionales.size(); i++)
     {
         ficheroSalida << log[i].c_str();

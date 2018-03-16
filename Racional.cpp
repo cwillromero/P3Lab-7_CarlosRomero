@@ -61,7 +61,7 @@ void Racional::setNumerador(int numerador)
 
 ostream &operator<<(ostream &out, const Racional &racional)
 {
-    out << racional.numerador << "/ " << racional.denominador << endl;
+    out << racional.numerador << "/ " << racional.denominador;
     return out;
 }
 
