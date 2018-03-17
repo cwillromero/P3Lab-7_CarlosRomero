@@ -8,14 +8,12 @@ Racional::Racional(int numerador, int denominador)
     this->numerador = numerador;
     this->denominador = denominador;
     Simplificar();
-    Simplificar();
 }
 
 Racional::Racional()
 {
     numerador = 5;
     denominador = 10;
-    Simplificar();
     Simplificar();
 }
 
@@ -72,6 +70,7 @@ const Racional *Racional::operator+(const Racional &Sumando) const
     int N_numerador = (this->numerador * Sumando.getDenominador()) + (this->denominador * Sumando.getNumerador());
     int N_denominador = this->denominador * Sumando.getDenominador();
     Racional *racional = new Racional(N_numerador, N_denominador);
+    racional->Simplificar();
     return racional;
 }
 
@@ -80,6 +79,7 @@ const Racional *Racional::operator-(const Racional &Restando) const
     int N_numerador = (this->numerador * Restando.getDenominador()) - (this->denominador * Restando.getNumerador());
     int N_denominador = this->denominador * Restando.getDenominador();
     Racional *racional = new Racional(N_numerador, N_denominador);
+    racional->Simplificar();
     return racional;
 }
 
@@ -88,6 +88,7 @@ const Racional *Racional::operator*(const Racional &Multiplicando) const
     int N_numerador = this->numerador * Multiplicando.getNumerador();
     int N_denominador = this->denominador * Multiplicando.getDenominador();
     Racional *racional = new Racional(N_numerador, N_denominador);
+    racional->Simplificar();
     return racional;
 }
 
@@ -96,6 +97,7 @@ const Racional *Racional::operator/(const Racional &Dividendo) const
     int N_numerador = this->numerador * Dividendo.getDenominador();
     int N_denominador = this->denominador * Dividendo.getNumerador();
     Racional *racional = new Racional(N_numerador, N_denominador);
+    racional->Simplificar();
     return racional;
 }
 
