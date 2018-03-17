@@ -18,8 +18,7 @@ void crearRacionales();
 void abrirRacionales();
 void Parsear(string);
 vector<Racional *> racionales;
-vector<string> log;
-void Guardar(string );
+void Guardar(string);
 
 int main()
 {
@@ -152,7 +151,7 @@ void suma()
     stringstream salida;
     salida << *racional << " + " << *racional2 << " = " << *suma;
     string a = salida.str();
-    log.push_back(a);
+
     Guardar(a);
 }
 
@@ -193,7 +192,6 @@ void resta()
     salida << *racional << " - " << *racional2 << " = " << *resta;
     string a = salida.str();
 
-    log.push_back(a);
     Guardar(a);
 }
 
@@ -229,13 +227,12 @@ void sumaAsignacion()
     Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     *racional += *racional2;
-    racionales[r1] = racional;
+    racionales[r1] = new Racional(racional->getNumerador(), racional->getDenominador());
     cout << "**>>Suma Asignación: " << *racional << endl;
     stringstream salida;
     salida << *racional << " += " << *racional2 << " = " << *racional;
     string a = salida.str();
 
-    log.push_back(a);
     Guardar(a);
 }
 
@@ -271,13 +268,12 @@ void restaAsignacion()
     Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     *racional -= *racional2;
-    racionales[r1] = racional;
+    racionales[r1] = new Racional(racional->getNumerador(), racional->getDenominador());
     cout << "**>>Resta Asignación: " << *racional << endl;
     stringstream salida;
     salida << *racional << " -= " << *racional2 << " = " << *racional;
     string a = salida.str();
 
-    log.push_back(a);
     Guardar(a);
 }
 
@@ -318,7 +314,6 @@ void multiplicacion()
     salida << *racional << " * " << *racional2 << " = " << *multiplicacion;
     string a = salida.str();
 
-    log.push_back(a);
     Guardar(a);
 }
 
@@ -354,13 +349,12 @@ void multiplicacionAsignacion()
     Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     *racional *= *racional2;
-    racionales[r1] = racional;
+    racionales[r1] = new Racional(racional->getNumerador(), racional->getDenominador());
     cout << "**>>Multiplicación Asignación: " << *racional << endl;
     stringstream salida;
     salida << *racional << " *= " << *racional2 << " = " << *racional;
     string a = salida.str();
 
-    log.push_back(a);
     Guardar(a);
 }
 
@@ -401,7 +395,6 @@ void division()
     salida << *racional << " / " << *racional2 << " = " << *division;
     string a = salida.str();
 
-    log.push_back(a);
     Guardar(a);
 }
 
@@ -437,12 +430,12 @@ void divisionAsigancion()
     Racional *racional2 = racionales[pos];
     cout << ">>Racional 2: " << *racional2 << endl;
     *racional /= *racional2;
-    racionales[r1] = racional;
+    racionales[r1] = new Racional(racional->getNumerador(), racional->getDenominador());
     cout << "**>>División Asignación: " << *racional << endl;
     stringstream salida;
     salida << *racional << " /= " << *racional2 << " = " << *racional;
     string a = salida.str();
-    log.push_back(a);
+
     Guardar(a);
 }
 
